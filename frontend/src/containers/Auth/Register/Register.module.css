@@ -1,0 +1,45 @@
+.Register {
+  margin: 170px auto 50px auto;
+  width: 80%;
+  text-align: center;
+  box-shadow: 10px 10px 30px #ccc;
+  border: 1px solid white;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: all 0.3s ease-in;
+  animation: register 0.9s ease-in forwards ;
+  background: white
+}
+
+.Button{
+   font-size: 30px;
+    padding: 20px;
+    margin: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    width:50%;
+}
+
+
+.inputStyle{
+  margin: 10px auto;
+}
+
+
+@keyframes register {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 800px){
+  .Register{
+    width: 50%;
+  }
+}

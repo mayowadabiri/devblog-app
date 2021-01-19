@@ -1,0 +1,25 @@
+.About{
+    border: 2px solid #addf40;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-right: 20px;;
+    padding: 30px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 100px;
+}
+
+.About h2{
+    letter-spacing: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bolder;
+    width: 100%;
+}
+
+.About>section>p{
+    word-spacing: 10px;
+    text-align: left;
+    line-height: 30px;
+}

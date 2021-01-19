@@ -1,0 +1,13 @@
+.ConfirmEmail{
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.ConfirmEmail>div{
+    text-align: center;
+    width: 30%;
+    padding: 30px;
+}

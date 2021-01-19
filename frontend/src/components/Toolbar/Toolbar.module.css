@@ -1,0 +1,23 @@
+.Toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 80px;
+  z-index: 90;
+  background: white;
+}
+
+.NavItems {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 800px) {
+  .DeskTopOnly {
+    display: none;
+  }
+}

@@ -1,0 +1,22 @@
+.Verifyemail {
+  margin: 200px auto  auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.Verify {
+  background: rgb(221, 221, 221);
+  width: 50%;
+  padding: 40px;
+  margin: auto;
+  text-align: center;
+}
+
+.Verify>h2{
+    text-transform: uppercase;
+    font-size: 35px;
+    margin-bottom: 50px;
+}

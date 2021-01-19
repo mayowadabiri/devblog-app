@@ -1,0 +1,21 @@
+.NotFound{
+    margin: 100px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.NotFound>div{
+    width: 70%;
+    padding: 50px;
+    
+}
+.NotFound p, .NotFound h1{
+    text-align: center;
+
+}
+.NotFound p{
+    font-size: 20px;
+}

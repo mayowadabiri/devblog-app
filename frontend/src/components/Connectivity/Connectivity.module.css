@@ -1,0 +1,17 @@
+.Connect{
+    margin-top: 80px;
+    width: 100%;
+    background: red;
+    transition: all 2s ease-in;
+    text-align: center;
+    height: 50px;
+    color: white;
+    display: flex;
+    border-radius: 4px;
+}
+
+.Connect>p{
+    color: whitesmoke;
+    width: 100%;
+    height: 100%;
+}

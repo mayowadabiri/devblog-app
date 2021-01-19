@@ -1,0 +1,30 @@
+.Blogsummary {
+  position: fixed;
+  z-index: 500;
+  background-color: white;
+  width: 70%;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 16px;
+  left: 15%;
+  top: 30%;
+  box-sizing: border-box;
+
+  transition: all 0.3s ease-out;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Button {
+  font-size: 20px;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  margin: auto;
+  display: inline-block;
+}

@@ -1,0 +1,170 @@
+.Container {
+  margin-bottom: 100px;
+  width: 100%;
+}
+
+.UserProfile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 80%;
+  margin: auto auto auto auto;
+}
+
+.ProfileImg {
+  display: block;
+  height: 500px;
+  width: 50%;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.ProfileImg > img {
+  width: 100%;
+  height: 100%;
+}
+
+.UserDetails {
+  width: 100%;
+  height: 100%;
+  color: black;
+  margin-left: 40px;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.UserName {
+  width: 100%;
+}
+
+.UserName > h1 {
+  letter-spacing: 10px;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 3vw;
+}
+.MetaData {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10%;
+}
+
+.MetaData p {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  width: 100%;
+  justify-content: space-around;
+}
+.MetaData p > span:nth-last-child(1) {
+  color: black;
+  display: inline;
+}
+
+.UserInfo {
+  flex-grow: 1;
+}
+.Statistics {
+  flex-grow: 2;
+}
+
+.Statistic > p:last-of-type {
+  height: 60px;
+  width: 60px;
+  margin: auto;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.NoImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 30px;
+  color: red;
+}
+
+.User_Links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 50%;
+  margin: auto;
+}
+.UserLink {
+  margin: auto;
+}
+.UserLink > h2 {
+  text-align: center;
+}
+
+.User_link {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.User_link > a {
+  height: 100%;
+  width: 100%;
+}
+
+.User_link > a > img {
+  width: 100%;
+  height: 100%;
+}
+
+.LinkStyle {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 60px auto auto auto;
+  height: 100%;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 2px #ccc;
+  padding: 15px;
+  border-radius: 2px;
+  width: 30%;
+  font-size: 1vw;
+}
+
+.LinkStyle:hover,
+.LinkStyle:active {
+  text-decoration: none;
+}
+
+@media (max-width: 1300px) {
+  .MetaData {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 900px) {
+  .UserProfile {
+    flex-direction: column;
+  }
+  .ProfileImg {
+    margin-bottom: 0;
+    width: 80%;
+    height: auto
+  }
+  .UserDetails {
+    margin-top: 0;
+    margin-left: 0;
+  }
+  .ProfileImg {
+    margin: 100px auto 0 auto;
+  }
+  .UserName > h1 {
+    text-align: center;
+  }
+  .LinkStyle{
+    font-size: 15px;
+  }
+  .User_Links{
+    width: 80%;
+  }
+}

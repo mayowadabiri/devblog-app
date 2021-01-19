@@ -1,0 +1,15 @@
+.LinkItem{
+    font-weight: bold;
+    text-decoration: none;
+   
+}
+
+.Success{
+    color: #5C9210;
+  }
+  
+
+  .Danger{
+    color: red;
+  }
+ 

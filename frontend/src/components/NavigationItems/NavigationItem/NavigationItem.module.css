@@ -1,0 +1,26 @@
+.NavigationItem{
+  margin-right: 30px;
+}
+
+.NavigationItem a{
+   text-decoration: none !important;
+   color: rgb(54, 54, 54);
+   text-transform: uppercase;
+}
+
+.NavigationItem a:hover, .NavigationItem a:active{
+    border-bottom: 5px solid    #5C9210
+}
+
+@media (max-width: 800px){
+  .NavigationItem{
+    margin-bottom: 30px;
+    width: 100%;
+    margin-right: 0;
+    text-align: center;
+  }
+  .NavigationItem a{
+   font-size: 2vw;
+  }
+
+}

@@ -1,0 +1,29 @@
+.ProfileEditForm {
+  width: 50%;
+  margin: auto;
+}
+
+.ProfileEdit {
+  margin-top: 20px;
+}
+
+.Textarea {
+  width: 500px;
+  height: 200px;
+}
+
+.ImageLoader {
+  height: 300px;
+}
+.ButtonStyles {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 80%;
+}
+.ButtonStyle {
+  padding: 15px;
+  width: 30%;
+  font-size: 20px;
+  text-transform: uppercase;
+}

@@ -1,0 +1,36 @@
+.Blogpage {
+  display: block;
+  width: 70%;
+  margin: 120px auto;
+}
+
+.Input {
+  display: block;
+  margin-top: 60px;
+  width: 100%;
+}
+
+.Textarea {
+  width: 70%;
+  background:  rgb(236, 236, 236);;
+}
+
+.Button {
+  font-size: 20px;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  margin: auto;
+  display: inline-block;
+}
+
+.Comments{
+    margin-top: 20px;
+}
+
+@media(max-width: 900px){
+  .Textarea{
+    width: 100%;
+  }
+}
