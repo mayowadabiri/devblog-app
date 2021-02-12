@@ -1,7 +1,9 @@
+// @ts-nocheck
 import React from "react";
 import classes from "./Input.module.css";
 
 const Input = (props) => {
+  console.log(props.elementType)
   let inputClasses = [classes.InputElement, props.elementStyle];
   let inputTextArea = [classes.Textarea, props.textareaStyle];
   if (
@@ -16,6 +18,7 @@ const Input = (props) => {
   }
   let inputElement;
   switch (props.elementType) {
+
     case "input":
       inputElement = (
         <input

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 const User = require("../models/user");
 const Token = require("../models/token");
 const crypto = require("crypto");
@@ -9,6 +11,7 @@ const {
   jwtSignIn,
   transporter,
   salt,
+  sendMail,
 } = require("../helpers/index");
 
 exports.signup = async (req, res, next) => {
@@ -59,27 +62,22 @@ exports.signup = async (req, res, next) => {
       token: crypto.randomBytes(16).toString("hex"),
       userId: user._id,
     });
-    const newUser = await user.save();
-    await token.save();
-    let mailOptions = {
-      from: "no-reply@devstory.com",
-      to: newUser.email,
-      subject: "Email Account Verification",
-      html: `<p> Hi, ${newUser.fullName},</p>
-          <p>You have successfully registered on the Dev Blog platform, to continue, you need to verify your email </p>
-          <p>Click <a href=${`http://localhost:3000/confirmemail/${token.token}`}>here</a> to verify</p>
-          <p>Pls, note that this link lasts for 1 hour after which it gets expired</p>
-          <br>
-          <p>Warm Regards</p>
-          <p>The DevBlog Team</p> 
+
+    const emailConfig = {
+      to: email,
+      subject: "Email Confirmation",
+      html: `<p> Hi, ${fullName},</p>
+      <p>You have successfully registered on the Dev Blog platform, to continue, you need to verify your email </p>
+      <p>Click <a href=${`http://localhost:3000/confirmemail/${token.token}`}>here</a> to verify</p>
+      <p>Pls, note that this link lasts for 1 hour after which it gets expired</p>
+      <br>
+      <p>Warm Regards</p>
+      <p>The DevBlog Team</p> 
       `,
     };
-    await transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        const error = errors("Error sending email", 500);
-        throw new error();
-      }
-    });
+    console.log(await sendMail(emailConfig));
+    await token.save();
+    await user.save();
     res.status(201).json({
       message: "User Created",
       email,
@@ -99,16 +97,15 @@ exports.login = async (req, res, next) => {
     }
     const username = req.body.username;
     const password = req.body.password;
-    const user = await User.findOne({ username: username });
+    const user = await User.findOne({
+      $or: [{ username: username }, { email: username }],
+    });
     if (!user) {
       const error = errors("No user found with such record", 404);
       throw error;
     }
     if (!user.isVerified) {
-      const error = errors(
-        "Account not verified yet, Verify your email to continue",
-        405
-      );
+      const error = errors("Account not verified yet, Verify your email ", 405);
       throw error;
     }
     const doMatch = await bcryptCompare(password, user.password);
@@ -122,9 +119,7 @@ exports.login = async (req, res, next) => {
     return res.status(200).json({
       message: "Loggedin successfully",
       token,
-      id: user._id.toString(),
-      username: user.username,
-      image: user.image,
+      user
     });
   } catch (err) {
     console.log(err);
@@ -201,7 +196,7 @@ exports.forgotpassword = async (req, res, next) => {
         const error = errors("Error sending email", 500);
         throw error;
       }
-      console.log(info)
+      console.log(info);
       console.log(`Password reset sent to ${email}`);
     });
     res.status(200).json({
@@ -269,8 +264,8 @@ exports.resendLink = async (req, res, next) => {
     });
     res.status(200).json({
       email: user.email,
-      message: "Sent Successfully"
-    })
+      message: "Sent Successfully",
+    });
   } catch (error) {
     next(error);
   }

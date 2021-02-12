@@ -1,3 +1,4 @@
+// @ts-nocheck
 const express = require("express");
 const passport = require("passport");
 require("./controllers/social");
@@ -14,6 +15,8 @@ const commentRoutes = require("./routes/comment");
 const userRoutes = require("./routes/user");
 const socialRoutes = require("./routes/social");
 const { SERVER_ENDPOINT, SERVER_CONFIG } = require("./helpers/index");
+
+console.log(process.env.GOOGLE_CLIENT_ID);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -67,16 +70,20 @@ app.use((req, res, next) => {
   next();
 });
 
+// app.use("/", (req, res, next) => {
+//   res.send("Server up and running");
+//   res.end();
+// });
 app.use(morgan("combined", { stream: accessLogStream }));
-app.use("/user", authRoutes);
-app.use(blogRoutes);
-app.use(commentRoutes);
-app.use(userRoutes);
-app.use(socialRoutes);
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/blog", blogRoutes);
+app.use("/api/v1/comment", commentRoutes);
+app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/social", socialRoutes);
 
 app.use((error, req, res, next) => {
-  console.log(error);
   if (error.name !== "Error") {
+    console.log(error);
     return res.status(500).json({
       message: "Error proceessing request",
       code: 500,

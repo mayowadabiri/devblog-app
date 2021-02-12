@@ -2,7 +2,7 @@ import axios from "axios";
 
 
  const axiosURL = axios.create({
-   baseURL: "https://api-dev-story.herokuapp.com/",
+   baseURL: "http://localhost:8000/",
  });
 
 export default axiosURL

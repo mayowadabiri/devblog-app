@@ -1,42 +1,20 @@
-const passport = require("passport");
-const FacebookStrategy = require("passport-facebook")
-const TwitterStrategy = require("passport-twitter");
-require("dotenv").config()
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+// const User
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
-});
-
- module.exports = passport.use(
-  new FacebookStrategy(
-    {
-      clientID: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: process.env.CALLBACK_URL,
-      profile: ["displayName", "username"],
-    },
-    (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
-      console.log(accessToken);
-      const { email, name } = profile._json;
-      const userData = {
-        email,
-        fullName: name,
-      };
-      console.log(userData);
-      done(null, profile);
-    }
-  )
-);
-
-// passport.use(
-//   new TwitterStrategy(
-//     {
-//       consumerKey
-//     }
-//   )
-// )
+exports.google = async (req, res, next) => {
+  try {
+    const { tokenId } = req.body;
+    const ticket = await client.verifyIdToken({
+      idToken: tokenId,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    return res.status(200).json({
+      message: "Logged In successfully",
+      payload,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

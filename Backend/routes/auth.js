@@ -8,9 +8,9 @@ const router = express.Router();
 router.post(
   "/signup",
   body("fullName", "First Name is required").trim().isLength({ min: 2 }),
-  body("username", "Last Name is required").trim(),
+  body("username", "Username is required").trim(),
   body("email").isEmail().normalizeEmail(),
-  body("password", "Password must be of of 6 characters long and alphanumeric")
+  body("password", "Password must be of of 8 characters long and alphanumeric")
     .trim()
     .isLength({ min: 8 })
     .isAlphanumeric(),
@@ -31,7 +31,7 @@ router.post("/forgotpassword", authController.forgotpassword);
 
 router.post(
   "/resetpassword/:token",
-  body("password", "Password must be of of 6 characters long and alphanumeric")
+  body("password", "Password must be of of 8 characters long and alphanumeric")
     .trim()
     .isLength({ min: 8 })
     .isAlphanumeric(),

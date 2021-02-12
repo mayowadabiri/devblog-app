@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
 import SideDrawer from "../../components/Sidedrawer/Sidedrawer";

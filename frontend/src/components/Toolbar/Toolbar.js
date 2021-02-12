@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Dropdown from "../Dropdown/Dropdown";
 import React from "react";
 import Logo from "../UI/Logo/Logo";

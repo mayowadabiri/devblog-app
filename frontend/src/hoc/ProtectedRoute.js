@@ -7,7 +7,6 @@ export const ProtectedRoute = ({
   disabled,
   ...rest
 }) => {
-  // console.log(disabled)?
   const isAuth = localStorage.getItem("token");
   return (
     <Route

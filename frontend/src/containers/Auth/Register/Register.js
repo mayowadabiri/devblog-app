@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Button from "../../../components/UI/Button/Button";
