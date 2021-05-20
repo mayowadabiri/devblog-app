@@ -1,3 +1,4 @@
+// @ts-nocheck
 const User = require("../models/user");
 const { errors } = require("../helpers/error");
 const path = require("path");

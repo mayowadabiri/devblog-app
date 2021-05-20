@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { jwtVerify } = require("./jwt");
 const { errors } = require("./error");
 exports.authentication = async (req, res, next) => {
@@ -13,7 +14,6 @@ exports.authentication = async (req, res, next) => {
       throw error;
     }
     const signatory = await jwtVerify(token);
-    console.log(signatory)
     req.userId = signatory.id;
     next();
   } catch (error) {

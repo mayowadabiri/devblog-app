@@ -8,7 +8,7 @@ const configurations = {
   },
   development: {
     ssl: false,
-    port: 8000,
+    port: 4000,
     hostname: "localhost",
   },
 };

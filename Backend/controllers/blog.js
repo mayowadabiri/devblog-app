@@ -23,6 +23,7 @@ exports.getBlogs = async (req, res, next) => {
 };
 
 exports.postBlog = async (req, res, next) => {
+  console.log("reached")
   const { file } = req;
   if (!file) {
     const error = errors("No image provided", 400);
@@ -38,13 +39,12 @@ exports.postBlog = async (req, res, next) => {
       },
       async (error, result) => {
         let url = result.url;
-        console.log(result.url, error);
-        console.log(url, "from url");
         const blog = new Blog({
           title,
           content,
           image: url,
           userId: req.userId,
+          blogUrl: title.split(" ").join("-")
         });
         await blog.save();
         const user = await User.findById(req.userId);
@@ -60,8 +60,8 @@ exports.postBlog = async (req, res, next) => {
 
 exports.getBlog = async (req, res, next) => {
   try {
-    const id = req.params.id;
-    const blog = await Blog.findById(id)
+    const url = req.params.id;
+    const blog = await Blog.findOne({blogUrl: url})
       .lean()
       .populate("userId", ["fullName"])
       .exec();

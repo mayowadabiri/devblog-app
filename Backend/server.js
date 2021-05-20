@@ -1,7 +1,6 @@
 // @ts-nocheck
 const express = require("express");
 const passport = require("passport");
-require("./controllers/social");
 require("dotenv").config();
 const path = require("path");
 const fs = require("fs");
@@ -16,7 +15,6 @@ const userRoutes = require("./routes/user");
 const socialRoutes = require("./routes/social");
 const { SERVER_ENDPOINT, SERVER_CONFIG } = require("./helpers/index");
 
-console.log(process.env.GOOGLE_CLIENT_ID);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -52,8 +50,8 @@ app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-app.use(multer({ storage: storage, fileFilter: fileFilter }).single("image"));
 app.use(express.urlencoded());
+app.use(multer({ storage: storage, fileFilter: fileFilter }).single("image"));
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use((req, res, next) => {
@@ -70,18 +68,23 @@ app.use((req, res, next) => {
   next();
 });
 
+
 // app.use("/", (req, res, next) => {
 //   res.send("Server up and running");
 //   res.end();
 // });
 app.use(morgan("combined", { stream: accessLogStream }));
-app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/auth", authRoutes); 
 app.use("/api/v1/blog", blogRoutes);
 app.use("/api/v1/comment", commentRoutes);
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/social", socialRoutes);
+// app.use("/api/v1/auth/login",(req, res, next) =>{
+
+// })
 
 app.use((error, req, res, next) => {
+  console.log(error)
   if (error.name !== "Error") {
     console.log(error);
     return res.status(500).json({

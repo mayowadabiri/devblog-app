@@ -1,8 +1,6 @@
 const jsonwebtoken = require("jsonwebtoken");
 const { privateKey, publicKey } = require("../constants/index");
 
-
-
 exports.jwtSignIn = async (email, id) => {
   try {
     const token = await jsonwebtoken.sign(
@@ -27,6 +25,7 @@ exports.jwtVerify = async (token) => {
     const signatory = await jsonwebtoken.verify(token, publicKey);
     return signatory;
   } catch (error) {
+    console.log(error);
     throw new jsonwebtoken.JsonWebTokenError("Error, proceessing Request");
   }
 };

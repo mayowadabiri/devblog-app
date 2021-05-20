@@ -89,17 +89,19 @@ exports.signup = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
   try {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-      const err = errors("Login Failed", 422);
-      err.data = result.array();
-      throw err;
-    }
+    // const result = validationResult(req);
+    // if (!result.isEmpty()) {
+    //   const err = errors("Login Failed", 422);
+    //   err.data = result.array();
+    //   throw err;
+    // }
+    console.log("reached");
     const username = req.body.username;
     const password = req.body.password;
     const user = await User.findOne({
       $or: [{ username: username }, { email: username }],
     });
+    console.log(user);
     if (!user) {
       const error = errors("No user found with such record", 404);
       throw error;
@@ -114,12 +116,14 @@ exports.login = async (req, res, next) => {
       throw error;
     }
 
-    const token = await jwtSignIn(user.email, user._id.toString());
+    const token = await jwtSignIn(user.email, user._id);
 
     return res.status(200).json({
       message: "Loggedin successfully",
       token,
-      user
+      username: user.username,
+      email: user.email,
+      id: user._id,
     });
   } catch (err) {
     console.log(err);
@@ -175,13 +179,12 @@ exports.forgotpassword = async (req, res, next) => {
       token: crypto.randomBytes(16).toString("hex"),
       userId: user._id,
     });
-    await token.save();
     const mailOptions = {
       from: "no-reply@devstory.com",
       to: email,
       subject: "Password Recovery",
       html: `<p> Hi, ${user.fullName},</p>
-          <p>A request has been made to reset your password on the DevBlog platform </p>
+      <p>A request has been made to reset your password on the DevBlog platform </p>
           <p>Click <a href=${`http://localhost:3000/resetpassword/${token.token}`}>here</a> to reset</p>
           <p>If you don't wish to rest your password, pls disregard this mail and no action will be taken</p>
           <p>Pls, note that this link lasts for 1 hour after which it gets expired</p>
@@ -199,6 +202,7 @@ exports.forgotpassword = async (req, res, next) => {
       console.log(info);
       console.log(`Password reset sent to ${email}`);
     });
+    await token.save();
     res.status(200).json({
       message: "Successful",
       email,
@@ -270,3 +274,5 @@ exports.resendLink = async (req, res, next) => {
     next(error);
   }
 };
+
+// bCrypt

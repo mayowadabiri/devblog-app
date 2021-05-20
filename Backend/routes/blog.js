@@ -5,11 +5,11 @@ const { authentication } = require("../helpers/index");
 
 const router = express.Router();
 
-router.get("/blogs", blogController.getBlogs);
+router.get("/get/blogs", blogController.getBlogs);
 
 // localhost:8080/blogs
 
-router.post("/postBlog", authentication, blogController.postBlog);
+router.post("/post-blog", authentication, blogController.postBlog);
 
 // localhost:808/postBlog
 
